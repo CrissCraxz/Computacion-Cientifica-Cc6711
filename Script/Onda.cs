@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Xml.Linq;
+using System.IO;
 
 namespace Cc6711.Script
 {
@@ -201,7 +204,7 @@ namespace Cc6711.Script
                 do
                 {
 
-                    v3D.color0 = Color.Red;
+                    //v3D.color0 = color0;
 
                    
                     // fuente 1 (0,3,0)
@@ -217,13 +220,103 @@ namespace Cc6711.Script
                     v3D.Xo = l;
                     v3D.Yo = h;
                     v3D.Zo = z1+z2;
-                    v3D.color0 = Color.Black;
+                    v3D.color0 = color0;
                     v3D.Encender(pantalla);
 
                     h += 0.2;
                 } while (h <= 7);
                 l += 0.2;
             } while (l <= 9);
+        }
+
+        public void GrafOndaIn2D(Bitmap pantalla)
+        {
+            double x, y, z;
+            int color0;
+
+            ColoresPaleta(); 
+            //PaletaOndaNew();
+            Color c;
+            string rutaArchivo = @"C:\Users\cris_\Documents\Onda2Dresultados.csv";
+
+            using (StreamWriter sw = new StreamWriter(rutaArchivo))
+            {
+
+                for (int i = 0; i < 600; i++)
+            {
+                    for (int j = 0; j < 500; j++)
+                    {
+                        transform(i, j, out x, out y);
+                        //Opcion 1
+                        //x = x + 6; //Posicion en el punto X
+                        //y = y - 0; //Posicion en el punto Y
+                        //z = w * (Math.Sqrt((x * x) + (y * y))) - v * t;
+
+                        //Opcion 2
+                        // Posicion (+1.5) (-1)
+                        z = w * (Math.Sqrt(((x + 1.5) * (x + 1.5)) + ((y - 1) * (y - 1))) - v * t);
+                        z = m * Math.Sin(z) + 1;
+                        color0 = (int)(z * 7.5);  //Se multiplica por 7.5 porque se tiene 15 colores y se lo divide para 2 porque la funcion seno toma valores de -1 a 1
+                        c = paleta0[color0];
+                        pantalla.SetPixel(i, j, c);
+                        Console.WriteLine("Color " + c);
+                        Console.WriteLine("Z: " + z);
+                        Console.WriteLine("X: " + x);
+                        Console.WriteLine("Y: " + y);
+
+
+
+                        sw.WriteLine($"Z: {z}, {c}, X: {x}, Y: {y}");
+
+                    }
+                }
+            }
+        }
+
+
+
+        public void GrafOndaIn3D(Bitmap pantalla)
+        {
+            Vector3D v3D = new Vector3D();
+            double l, h, z, d;
+
+
+            string rutaArchivo = @"C:\Users\cris_\Documents\Onda3Dresultados.csv";
+
+            using (StreamWriter sw = new StreamWriter(rutaArchivo))
+            {
+
+
+                l = -8;
+            do
+            {
+                h = -6;
+                do
+                {
+
+                    
+
+                    v3D.Xo = l;
+                    v3D.Yo = h;
+                    //posiciones -1.35 y -2.25
+                    d = (Math.Sin(w * (Math.Sqrt((l - 1.35) * (l - 1.35) + (h - 2.25) * (h - 2.25)) - v * t))); 
+                    z = 0.4 * Math.Sin(d);
+                    v3D.Zo = z;
+                    v3D.color0 = Color.Black;
+                    v3D.Encender(pantalla);
+
+                    sw.WriteLine($"X: {v3D.Xo}, Z: {v3D.Zo}, Y: {v3D.Yo}");
+
+                 h += 0.2;
+                } while (h <= 6);
+                l += 0.2;
+            } while (l <= 7);
+
+                
+
+            }   
+            
+
         }
 
 

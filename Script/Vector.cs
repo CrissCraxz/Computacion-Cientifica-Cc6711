@@ -9,9 +9,9 @@ namespace Cc6711.Script
 {
     internal class Vector
     {
-        //  factor de aumento
+        //  factor de aumento dividir x1 y x2, y1,y2 para 2
         
-        public double x1 = -10, x2 = 10, y1 = -8.33, y2 = 8.33, sx1 = 0, sx2 = 600, sy1 = 0, sy2 = 500, Xo, Yo;
+        public double x1 = -10/2, x2 = 10/2, y1 = -8.33 / 2, y2 = 8.33 / 2, sx1 = 0, sx2 = 600, sy1 = 0, sy2 = 500, Xo, Yo;
         
         public Color color0;
 

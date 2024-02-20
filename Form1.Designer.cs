@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -77,8 +81,25 @@
             this.button2 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button30 = new System.Windows.Forms.Button();
+            this.button29 = new System.Windows.Forms.Button();
+            this.button28 = new System.Windows.Forms.Button();
+            this.button27 = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.button26 = new System.Windows.Forms.Button();
+            this.button25 = new System.Windows.Forms.Button();
+            this.button24 = new System.Windows.Forms.Button();
+            this.button23 = new System.Windows.Forms.Button();
+            this.button22 = new System.Windows.Forms.Button();
+            this.button21 = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
             this.buttonTestPractice = new System.Windows.Forms.Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.dgPandemia = new System.Windows.Forms.DataGridView();
+            this.Pandemia = new System.Windows.Forms.Button();
+            this.button31 = new System.Windows.Forms.Button();
+            this.dgRungeKutta = new System.Windows.Forms.DataGridView();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.buttonOff = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -86,14 +107,15 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.button21 = new System.Windows.Forms.Button();
-            this.button22 = new System.Windows.Forms.Button();
-            this.button23 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPandemia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgRungeKutta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -114,11 +136,12 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(917, 26);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(381, 615);
+            this.tabControl1.Size = new System.Drawing.Size(713, 615);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -139,7 +162,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage1.Size = new System.Drawing.Size(373, 586);
+            this.tabPage1.Size = new System.Drawing.Size(705, 586);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -312,7 +335,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage2.Size = new System.Drawing.Size(373, 586);
+            this.tabPage2.Size = new System.Drawing.Size(705, 586);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
@@ -639,12 +662,20 @@
             this.tabPage3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage3.Size = new System.Drawing.Size(373, 586);
+            this.tabPage3.Size = new System.Drawing.Size(705, 586);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.button30);
+            this.tabPage4.Controls.Add(this.button29);
+            this.tabPage4.Controls.Add(this.button28);
+            this.tabPage4.Controls.Add(this.button27);
+            this.tabPage4.Controls.Add(this.label12);
+            this.tabPage4.Controls.Add(this.button26);
+            this.tabPage4.Controls.Add(this.button25);
+            this.tabPage4.Controls.Add(this.button24);
             this.tabPage4.Controls.Add(this.button23);
             this.tabPage4.Controls.Add(this.button22);
             this.tabPage4.Controls.Add(this.button21);
@@ -653,9 +684,118 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(373, 586);
+            this.tabPage4.Size = new System.Drawing.Size(705, 586);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button30
+            // 
+            this.button30.Location = new System.Drawing.Point(10, 414);
+            this.button30.Name = "button30";
+            this.button30.Size = new System.Drawing.Size(186, 23);
+            this.button30.TabIndex = 12;
+            this.button30.Text = "Prueba 3er Parcial Onda";
+            this.button30.UseVisualStyleBackColor = true;
+            this.button30.Click += new System.EventHandler(this.button30_Click);
+            // 
+            // button29
+            // 
+            this.button29.Location = new System.Drawing.Point(32, 476);
+            this.button29.Name = "button29";
+            this.button29.Size = new System.Drawing.Size(75, 23);
+            this.button29.TabIndex = 11;
+            this.button29.Text = "button29";
+            this.button29.UseVisualStyleBackColor = true;
+            this.button29.Click += new System.EventHandler(this.button29_Click);
+            // 
+            // button28
+            // 
+            this.button28.Location = new System.Drawing.Point(10, 385);
+            this.button28.Name = "button28";
+            this.button28.Size = new System.Drawing.Size(186, 23);
+            this.button28.TabIndex = 10;
+            this.button28.Text = "Animacion Cuerda Vibrante";
+            this.button28.UseVisualStyleBackColor = true;
+            this.button28.Click += new System.EventHandler(this.button28_Click);
+            // 
+            // button27
+            // 
+            this.button27.Location = new System.Drawing.Point(10, 356);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(122, 23);
+            this.button27.TabIndex = 9;
+            this.button27.Text = "Cuerda Vibrante";
+            this.button27.UseVisualStyleBackColor = true;
+            this.button27.Click += new System.EventHandler(this.button27_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(7, 252);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(168, 16);
+            this.label12.TabIndex = 8;
+            this.label12.Text = "Informe de clase de Ondas";
+            // 
+            // button26
+            // 
+            this.button26.Location = new System.Drawing.Point(6, 303);
+            this.button26.Name = "button26";
+            this.button26.Size = new System.Drawing.Size(125, 23);
+            this.button26.TabIndex = 7;
+            this.button26.Text = "Onda 3D informe";
+            this.button26.UseVisualStyleBackColor = true;
+            this.button26.Click += new System.EventHandler(this.button26_Click);
+            // 
+            // button25
+            // 
+            this.button25.Location = new System.Drawing.Point(7, 274);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(125, 23);
+            this.button25.TabIndex = 6;
+            this.button25.Text = "Onda 2D informe";
+            this.button25.UseVisualStyleBackColor = true;
+            this.button25.Click += new System.EventHandler(this.button25_Click);
+            // 
+            // button24
+            // 
+            this.button24.Location = new System.Drawing.Point(7, 183);
+            this.button24.Name = "button24";
+            this.button24.Size = new System.Drawing.Size(220, 23);
+            this.button24.TabIndex = 5;
+            this.button24.Text = "Animacion Interferencia Ondas 3D";
+            this.button24.UseVisualStyleBackColor = true;
+            this.button24.Click += new System.EventHandler(this.button24_Click);
+            // 
+            // button23
+            // 
+            this.button23.Location = new System.Drawing.Point(7, 154);
+            this.button23.Name = "button23";
+            this.button23.Size = new System.Drawing.Size(175, 23);
+            this.button23.TabIndex = 4;
+            this.button23.Text = "Interferencia Ondas 3D";
+            this.button23.UseVisualStyleBackColor = true;
+            this.button23.Click += new System.EventHandler(this.button23_Click);
+            // 
+            // button22
+            // 
+            this.button22.Location = new System.Drawing.Point(7, 124);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(90, 23);
+            this.button22.TabIndex = 3;
+            this.button22.Text = "Onda 3D v1";
+            this.button22.UseVisualStyleBackColor = true;
+            this.button22.Click += new System.EventHandler(this.button22_Click);
+            // 
+            // button21
+            // 
+            this.button21.Location = new System.Drawing.Point(6, 94);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(84, 23);
+            this.button21.TabIndex = 2;
+            this.button21.Text = "Onda 3D";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
             // 
             // button20
             // 
@@ -676,6 +816,82 @@
             this.buttonTestPractice.Text = "2do parcial semestre I";
             this.buttonTestPractice.UseVisualStyleBackColor = true;
             this.buttonTestPractice.Click += new System.EventHandler(this.buttonTestPractice_Click);
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.dgPandemia);
+            this.tabPage5.Controls.Add(this.Pandemia);
+            this.tabPage5.Controls.Add(this.button31);
+            this.tabPage5.Controls.Add(this.dgRungeKutta);
+            this.tabPage5.Controls.Add(this.chart1);
+            this.tabPage5.Location = new System.Drawing.Point(4, 25);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(705, 586);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "tabPage5";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // dgPandemia
+            // 
+            this.dgPandemia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgPandemia.Location = new System.Drawing.Point(355, 310);
+            this.dgPandemia.Name = "dgPandemia";
+            this.dgPandemia.RowHeadersWidth = 51;
+            this.dgPandemia.RowTemplate.Height = 24;
+            this.dgPandemia.Size = new System.Drawing.Size(313, 199);
+            this.dgPandemia.TabIndex = 4;
+            // 
+            // Pandemia
+            // 
+            this.Pandemia.Location = new System.Drawing.Point(194, 528);
+            this.Pandemia.Name = "Pandemia";
+            this.Pandemia.Size = new System.Drawing.Size(75, 23);
+            this.Pandemia.TabIndex = 3;
+            this.Pandemia.Text = "Pandemia";
+            this.Pandemia.UseVisualStyleBackColor = true;
+            this.Pandemia.Click += new System.EventHandler(this.button32_Click);
+            // 
+            // button31
+            // 
+            this.button31.Location = new System.Drawing.Point(28, 528);
+            this.button31.Name = "button31";
+            this.button31.Size = new System.Drawing.Size(75, 23);
+            this.button31.TabIndex = 2;
+            this.button31.Text = "Rukkekuta";
+            this.button31.UseVisualStyleBackColor = true;
+            this.button31.Click += new System.EventHandler(this.button31_Click);
+            // 
+            // dgRungeKutta
+            // 
+            this.dgRungeKutta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgRungeKutta.Location = new System.Drawing.Point(28, 310);
+            this.dgRungeKutta.Name = "dgRungeKutta";
+            this.dgRungeKutta.RowHeadersWidth = 51;
+            this.dgRungeKutta.RowTemplate.Height = 24;
+            this.dgRungeKutta.Size = new System.Drawing.Size(297, 199);
+            this.dgRungeKutta.TabIndex = 1;
+            // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(28, 15);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Solución analítica";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "Solución numérica";
+            this.chart1.Series.Add(series1);
+            this.chart1.Series.Add(series2);
+            this.chart1.Size = new System.Drawing.Size(640, 262);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
             // 
             // buttonOff
             // 
@@ -741,41 +957,11 @@
             this.label10.TabIndex = 8;
             this.label10.Text = "-y = -8.33";
             // 
-            // button21
-            // 
-            this.button21.Location = new System.Drawing.Point(6, 94);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(84, 23);
-            this.button21.TabIndex = 2;
-            this.button21.Text = "Onda 3D";
-            this.button21.UseVisualStyleBackColor = true;
-            this.button21.Click += new System.EventHandler(this.button21_Click);
-            // 
-            // button22
-            // 
-            this.button22.Location = new System.Drawing.Point(7, 124);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(90, 23);
-            this.button22.TabIndex = 3;
-            this.button22.Text = "Onda 3D v1";
-            this.button22.UseVisualStyleBackColor = true;
-            this.button22.Click += new System.EventHandler(this.button22_Click);
-            // 
-            // button23
-            // 
-            this.button23.Location = new System.Drawing.Point(7, 154);
-            this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(175, 23);
-            this.button23.TabIndex = 4;
-            this.button23.Text = "Interferencia Ondas 3D";
-            this.button23.UseVisualStyleBackColor = true;
-            this.button23.Click += new System.EventHandler(this.button23_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1302, 691);
+            this.ClientSize = new System.Drawing.Size(1681, 691);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -794,6 +980,11 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgPandemia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgRungeKutta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -862,6 +1053,20 @@
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
         private System.Windows.Forms.Button button23;
+        private System.Windows.Forms.Button button24;
+        private System.Windows.Forms.Button button25;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button button26;
+        private System.Windows.Forms.Button button27;
+        private System.Windows.Forms.Button button28;
+        private System.Windows.Forms.Button button29;
+        private System.Windows.Forms.Button button30;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.DataGridView dgRungeKutta;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Button button31;
+        private System.Windows.Forms.Button Pandemia;
+        private System.Windows.Forms.DataGridView dgPandemia;
     }
 }
 

@@ -1,6 +1,7 @@
 ﻿using Cc6711.Script;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
@@ -16,6 +17,7 @@ namespace Cc6711
         Bitmap pantalla = new Bitmap(600, 500);
         Color[] paleta = new Color[16];
         Color[] paletaT = new Color[16];
+        private Color viewPortBackColor;
         int yp, xp;
         public Form1()
         {
@@ -46,6 +48,15 @@ namespace Cc6711
             paletaT[1] = Color.FromArgb(130, 70, 30);
             paletaT[1] = Color.FromArgb(200, 100, 50);
 
+
+
+        }
+
+
+        private void App_Load(object sender, EventArgs e)
+        {
+            viewPortBackColor = pictureBox1.BackColor;
+            // Add ITems
 
 
         }
@@ -1462,6 +1473,11 @@ namespace Cc6711
 
         }
 
+        static double modeloEnfermedad(double t, double y, double k, double M)
+        {
+            return k * y * (M - y);
+        }
+
         private void button9_Click(object sender, EventArgs e)
         {
             Vector3D vector3D = new Vector3D();
@@ -1820,11 +1836,119 @@ namespace Cc6711
 
             //maneja la posicion de la onda 
 
-                onda.Interferencia_onda3D(pantalla);
+            onda.Interferencia_onda3D(pantalla);
            
-                System.Windows.Forms.Application.DoEvents();
-                pictureBox1.Image = pantalla;
+            System.Windows.Forms.Application.DoEvents();
+            pictureBox1.Image = pantalla;
   
+        }
+
+        private async void button24_Click(object sender, EventArgs e)
+        {
+            Onda onda = new Onda();
+            onda.w = 2;  // Parametro que determina la longitud de onda
+            onda.v = 9.3;  // Velocidad de proporcion 
+            onda.m = 0.7;    // Altura máxima
+           // onda.t = 0;    // Tiempo
+
+            //maneja la posicion de la onda 
+            double t = 0.02, dt =0;
+            do {
+
+                onda.color0 = Color.LightSkyBlue;
+                onda.Interferencia_onda3D(pantalla);
+                await Task.Delay(40);
+
+                onda.color0 = Color.White;
+                onda.Interferencia_onda3D(pantalla);
+                pictureBox1.Image = pantalla;
+
+                onda.t = dt;
+                dt += t;
+                
+            } while (t <= 1.80);
+
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            Onda onda = new Onda();
+            onda.w = 1.5;  // Parametro que determina la longitud de onda
+            onda.v = 9.3;  // Velocidad de proporcion 
+            onda.m = 1;    // Altura máxima
+            onda.t = 0;    // Tiempo
+
+            //maneja la posicion de la onda 
+
+            onda.GrafOndaIn2D(pantalla);
+            pictureBox1.Image = pantalla;
+        }
+
+        private void button26_Click(object sender, EventArgs e)
+        {
+            Onda onda = new Onda();
+            onda.w = 1.5;  // Parametro que determina la longitud de onda
+            onda.v = 9.3;  // Velocidad de proporcion 
+            onda.m = 1;    // Altura máxima
+            onda.t = 0;    // Tiempo
+
+            //maneja la posicion de la onda 
+
+            onda.GrafOndaIn3D(pantalla);
+            pictureBox1.Image = pantalla;
+        }
+
+        private void button27_Click(object sender, EventArgs e)
+        {
+            CuerdaVibrante cuerdaVibrante = new CuerdaVibrante();
+            cuerdaVibrante.color0 = Color.Green;
+            cuerdaVibrante.t = 1.30;
+            cuerdaVibrante.cuerdaVibrante2D(pantalla);
+            pictureBox1.Image = pantalla;
+        }
+
+        private void button28_Click(object sender, EventArgs e)
+        {
+            CuerdaVibrante cuerdaVibrante = new CuerdaVibrante();
+            
+            double t = 2.5;
+
+            do {
+                cuerdaVibrante.t = t;
+                cuerdaVibrante.color0 = Color.Black;
+                cuerdaVibrante.cuerdaVibrantepRUEBA(pantalla);
+                System.Windows.Forms.Application.DoEvents();
+                System.Threading.Thread.Sleep(15);
+
+                cuerdaVibrante.Apagar(pantalla);
+                cuerdaVibrante.color0 = viewPortBackColor;
+                cuerdaVibrante.color0 = viewPortBackColor;
+                pictureBox1.Image = pantalla;
+                t += 0.05;
+                if (t>= 20)
+                {
+                    t = 0;
+                }
+
+            } while (true);
+            
+            
+        }
+
+
+
+        private void button29_Click(object sender, EventArgs e)
+        {
+            double h = 1.0;
+            double t0 = 0.0;
+            double y0 = 1.0;
+
+            double tn = 20.0;
+
+            RungeKutta((t, y) => 0.001 * (500 - t) * y, h, t0, y0, tn);
+
+            Console.ReadLine();
+
         }
 
         private void DibujarCurvaDeCasteljau(Graphics g, Pen pen, Point p0, Point p1, Point p2)
@@ -1848,6 +1972,136 @@ namespace Cc6711
         }
 
 
+        // Nuevo método que contiene la simulación
+        static void RungeKutta(Func<double, double, double> function, double h, double t0, double y0, double tn)
+        {
+            double t = t0;
+            double y = y0;
+
+            while (t <= tn)
+            {
+                Console.WriteLine($"t = {t}, y = {y}");
+
+                double k1 = h * function(t, y);
+                double k2 = h * function(t + h / 2, y + k1 / 2);
+                double k3 = h * function(t + h / 2, y + k2 / 2);
+                double k4 = h * function(t + h, y + k3);
+
+                y = y + (k1 + 2 * k2 + 2 * k3 + k4) / 6;
+                t = t + h;
+            }
+        }
+
+        private void button30_Click(object sender, EventArgs e)
+        {
+
+            CuerdaVibrante cuerdaVibrante = new CuerdaVibrante();
+
+            double t = 0;
+
+            do
+            {
+                cuerdaVibrante.t = 0;
+                cuerdaVibrante.color0 = Color.Green;
+                cuerdaVibrante.cuerdaVibrantepRUEBA(pantalla);
+                System.Windows.Forms.Application.DoEvents();
+                System.Threading.Thread.Sleep(15);
+
+                cuerdaVibrante.Apagar(pantalla);
+                cuerdaVibrante.color0 = viewPortBackColor;
+                cuerdaVibrante.color0 = viewPortBackColor;
+                pictureBox1.Image = pantalla;
+                t += 0.005;
+                if (t >= 20)
+                {
+                    t = 0;
+                }
+
+            } while (true);
+
+
+
+        }
+
+        // bRungeKutta metodo
+        private void button31_Click(object sender, EventArgs e)
+        {
+            dgRungeKutta.Columns.Clear();
+            dgRungeKutta.Rows.Clear();
+            dgRungeKutta.RowHeadersVisible = false;
+
+            chart1.Series["Solución numérica"].Points.Clear();
+
+            dgRungeKutta.Columns.Add("Tiempo", "Tiempo");
+            dgRungeKutta.Columns.Add("Enfermos", "Enfermos");
+
+            dgRungeKutta.Columns["Tiempo"].Width = 65;
+            dgRungeKutta.Columns["Enfermos"].Width = 95;
+            dgRungeKutta.Columns["Tiempo"].ReadOnly = true;
+            dgRungeKutta.Columns["Enfermos"].ReadOnly = true;
+            dgRungeKutta.Columns["Tiempo"].DefaultCellStyle.BackColor = Color.LightGray;
+
+            double t0 = 0, y0 = 1, tf = 20, k = 0.001, h = 1, k1, k2, k3, k4;
+            int m = 500;
+
+            do
+            {
+                k1 = h * modeloEnfermedad(t0, y0, k, m);
+                k2 = h * modeloEnfermedad(t0 + h / 2, y0 + k1 / 2, k, m);
+                k3 = h * modeloEnfermedad(t0 + h / 2, y0 + k2 / 2, k, m);
+                k4 = h * modeloEnfermedad(t0 + h, y0 + k3, k, m);
+
+                y0 += (k1 + 2 * k2 + 2 * k3 + k4) / 6;
+                t0 += h;
+
+                y0 = Math.Round(y0, 5);
+                dgRungeKutta.Rows.Add(t0, y0);
+                chart1.Series["Solución numérica"].Points.AddXY(t0, y0);
+            } while (t0 < tf);
+        }
+
+        private void button32_Click(object sender, EventArgs e)
+        {
+            dgPandemia.Columns.Clear();
+            dgPandemia.Rows.Clear();
+            dgPandemia.RowHeadersVisible = false;
+
+            chart1.Series["Solución analítica"].Points.Clear();
+
+            dgPandemia.Columns.Add("Tiempo", "Tiempo");
+            dgPandemia.Columns.Add("Enfermos", "Enfermos");
+
+            dgPandemia.Columns["Tiempo"].Width = 65;
+            dgPandemia.Columns["Enfermos"].Width = 95;
+            dgPandemia.Columns["Tiempo"].ReadOnly = true;
+            dgPandemia.Columns["Enfermos"].ReadOnly = true;
+            dgPandemia.Columns["Tiempo"].DefaultCellStyle.BackColor = Color.LightCyan;
+
+            int m = 500;
+            double k = 0.001, h = 1, y;
+            double t = 1, tf = 20;
+            do
+            {
+                y = m / (1 + (m - k / k) * Math.Pow(Math.E, -m * k * t));
+
+                y = Math.Round(y, 5);
+                dgPandemia.Rows.Add(t, y);
+                chart1.Series["Solución analítica"].Points.AddXY(t, y);
+                t += h;
+
+            } while (t <= tf);
+        }
+
+
+        // Función diferencial
+        private static double Function(double t, double y, double k, double M)
+        {
+            return k * y * (M - y);
+        }
+
+
+
+
 
 
 
@@ -1856,8 +2110,13 @@ namespace Cc6711
 
 
 
-
 }
+
+
+
+
+
+
 
 
 

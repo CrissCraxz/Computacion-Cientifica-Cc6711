@@ -52,6 +52,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -73,6 +74,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Script\Beizer.cs" />
     <Compile Include="Script\Circunferencia.cs" />
+    <Compile Include="Script\CuerdaVibrante.cs" />
     <Compile Include="Script\CurvaV.cs" />
     <Compile Include="Script\Onda.cs" />
     <Compile Include="Script\Segmento.cs" />
